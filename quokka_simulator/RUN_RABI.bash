@@ -1,30 +1,22 @@
-echo "Running p = 0 rabi simulations..."
+#!/bin/bash
 
-for i in $(seq 0 3); do
-    ./rabi_simulator_modules/d3rabi_v4 3 0.25 0 0 2 100 > /dev/null &
+# p (physical error rate) values:
+p_values=(0.1)
+
+
+for p in "${p_values[@]}"; do
+
+
+	echo "Running p = $p rabi simulations..."
+
+	for i in $(seq 0 0); do
+   	 ./rabi_simulator_modules/d3rabi_v4.out 3 0.25 0 $p 2 10 > /dev/null &
+	done
+
+	wait
+
+	echo "Completed"
+
 done
-
-wait
-
-echo "Completed"
-
-echo "Performing p = 0.001 rabi simulations..."
-
-for i in $(seq 0 3); do
-    ./rabi_simulator_modules/d3rabi_v4 3 0.25 0 0.001 2 100 > /dev/null &
-done
-
-wait
-
-echo "Completed"
-
-echo "Performing p = 0.002 rabi simulations..."
-
-for i in $(seq 0 3); do
-    ./rabi_simulator_modules/d3rabi_v4 3 0.25 0 0.002 2 100 > /dev/null &
-done
-
-wait
-
 
 echo "Done"
