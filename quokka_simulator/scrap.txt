@@ -1,0 +1,45 @@
+New:
+
+
+num_bins = int(sys.argv[2])
+cutoff = int(sys.argv[3])
+
+
+def group_by_theta_bins(trajectorycounts, logicalzeros, thetaLarray, analyticalprobarray, xLp, yLp, zLp, num_bins):
+    # Define bins between 0 and 2π
+    bins = np.linspace(0, 2*np.pi, num_bins+1)
+    bin_indices = np.digitize(thetaLarray*np.pi, bins) - 1  # -1 to make indices 0-based
+
+    # Prepare output arrays
+    newthetas = np.zeros(num_bins)
+    newprobs = np.full(num_bins, np.nan)
+    newanalyticalprobs = np.full(num_bins, np.nan)
+    newxLp = np.full(num_bins, np.nan)
+    newyLp = np.full(num_bins, np.nan)
+    newzLp = np.full(num_bins, np.nan)
+    counts = np.zeros(num_bins, dtype=int)
+
+    # Aggregate values for each bin
+    for i in range(num_bins):
+        positions = np.where(bin_indices == i)[0]
+        if len(positions) == 0:
+            continue
+        counts[i] = len(positions)
+        trajectory_sum = np.sum(trajectorycounts[positions])
+        logical0_sum = np.sum(logicalzeros[positions])
+        with np.errstate(divide='ignore', invalid='ignore'):
+            newprobs[i] = logical0_sum / trajectory_sum
+        newanalyticalprobs[i] = np.mean(analyticalprobarray[positions])
+        newxLp[i] = np.mean(xLp[positions])
+        newyLp[i] = np.mean(yLp[positions])
+        newzLp[i] = np.mean(zLp[positions])
+        newthetas[i] = np.mean(thetaLarray[positions])
+
+    return newthetas, newprobs, newanalyticalprobs, newxLp, newyLp, newzLp, counts
+
+
+
+    groupedthetas, groupedprobs, groupedanalyticalprobs, groupedxLp, groupedyLp, groupedzLp, counts = group_by_theta_bins(trajectorycounts, logicalzeros, thetaLarray, analyticalprobarray, xLp, yLp, zLp, num_bins)
+
+    valid_bins = counts >= cutoff
+    plt.scatter(groupedthetas[valid_bins],groupedprobs[valid_bins],s = dotsize_simulation,label = 'simulated',color = colours[:len(groupedthetas[valid_bins])])  #automatically doesn't plot the points which were never landed in (will have nan values for theta)
