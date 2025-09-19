@@ -1,0 +1,80 @@
+Stabiliser measurements:
+000101000010
+010000111101
+Detection events:
+010101111111
+At least one detection
+|0>_L
+
+Stabiliser measurements:
+100010100110
+100100000111
+Detection events:
+000110100001
+At least one detection
+|1>_L
+
+Stabiliser measurements:
+001110000110
+100011000001
+Detection events:
+101101000111
+At least one detection
+|0>_L
+
+Stabiliser measurements:
+001110100111
+010111001111
+Detection events:
+011001101000
+At least one detection
+|1>_L
+
+Stabiliser measurements:
+000111101101
+111001100110
+Detection events:
+111110001011
+At least one detection
+|0>_L
+
+Stabiliser measurements:
+000001001100
+001110010001
+Detection events:
+001111011101
+At least one detection
+|0>_L
+
+Stabiliser measurements:
+100110101011
+011111111000
+Detection events:
+111001010011
+At least one detection
+|0>_L
+
+Stabiliser measurements:
+001001010001
+011101100111
+Detection events:
+010100110110
+At least one detection
+|1>_L
+
+Stabiliser measurements:
+001011111101
+101110000110
+Detection events:
+100101111011
+At least one detection
+|1>_L
+
+Stabiliser measurements:
+101000101100
+011101100100
+Detection events:
+110101001000
+At least one detection
+|0>_L
+
