@@ -6,6 +6,7 @@
 
 // Also changed Z checks to just use CNOTs going from data qubit to auxiliary in zero state.
 
+// 
 
 #include <stdlib.h>
 #include <stdio.h>
