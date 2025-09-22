@@ -1,0 +1,2 @@
+results_of_run_rabi/processed/d3/*.dat filter=lfs diff=lfs merge=lfs -text
+results_of_run_rabi/process/d*/*.dat filter=lfs diff=lfs merge=lfs -text

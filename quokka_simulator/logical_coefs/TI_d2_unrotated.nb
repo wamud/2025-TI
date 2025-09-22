@@ -1,0 +1,1486 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     53082,       1485]
+NotebookOptionsPosition[     50912,       1443]
+NotebookOutlinePosition[     51360,       1460]
+CellTagsIndexPosition[     51317,       1457]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", "\"\<Global'*\>\"", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\<C:\\\\Users\\\\24510265\\\\OneDrive - \
+UTS\\\\#PhD\\\\\[Exists]xperiments\\\\TI\\\\2024\\\\rabi_simulators\\\\\
+logical_coefficients\>\"", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{"a", ",", "b"}], "]"}], ";"}], "\[IndentingNewLine]", 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"FileExistsQ", "[", "\"\<aL_D2_unrotated.txt\>\"", "]"}], ",", 
+    RowBox[{"DeleteFile", "[", "\"\<aL_D2_unrotated.txt\>\"", "]"}], ",", 
+    RowBox[{"CreateFile", "[", "\"\<aL_D2_unrotated.txt\>\"", "]"}]}], "]"}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"FileExistsQ", "[", "\"\<bL_D2_unrotated.txt\>\"", "]"}], ",", 
+     RowBox[{"DeleteFile", "[", "\"\<bL_D2_unrotated.txt\>\"", "]"}], ",", 
+     RowBox[{"CreateFile", "[", "\"\<bL_D2_unrotated.txt\>\"", "]"}]}], "]"}],
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"IS", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"XS", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"ZS", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"YS", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"-", "I"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"I", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"zero", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "0", "}"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"one", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", "0", "}"}], ",", 
+      RowBox[{"{", "1", "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Define", " ", "Stabilizers", " ", "and", " ", "Logical", " ", "state"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ident", "=", 
+   RowBox[{"KroneckerProduct", "[", 
+    RowBox[{"IS", ",", "IS", ",", "IS", ",", "IS", ",", "IS"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stab", "[", "1", "]"}], "=", 
+   RowBox[{"KroneckerProduct", "[", 
+    RowBox[{"XS", ",", "XS", ",", "XS", ",", "IS", ",", "IS"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stab", "[", "2", "]"}], "=", 
+   RowBox[{"KroneckerProduct", "[", 
+    RowBox[{"IS", ",", "IS", ",", "XS", ",", "XS", ",", "XS"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stab", "[", "3", "]"}], "=", 
+   RowBox[{"KroneckerProduct", "[", 
+    RowBox[{"ZS", ",", "IS", ",", "ZS", ",", "ZS", ",", "IS"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stab", "[", "4", "]"}], "=", 
+   RowBox[{"KroneckerProduct", "[", 
+    RowBox[{"IS", ",", "ZS", ",", "ZS", ",", "IS", ",", "ZS"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zerolog", "=", 
+    RowBox[{"KroneckerProduct", "[", 
+     RowBox[{"ZS", ",", "ZS", ",", "IS", ",", "IS", ",", "IS"}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ns", "=", "4"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"arb", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "a", "}"}], ",", 
+     RowBox[{"{", "b", "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"initialstate", "=", 
+    RowBox[{"KroneckerProduct", "[", 
+     RowBox[{"arb", ",", "arb", ",", "arb", ",", "arb", ",", "arb"}], "]"}]}],
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Loop", " ", "over", " ", "Trajectories"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "0"}], ",", 
+    RowBox[{"i", "<=", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"2", "^", "ns"}]}]}], ",", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Trajectory", "=", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{"i", ",", "2", ",", "ns"}], "]"}]}], ";", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"Gives", " ", "i", " ", "as", " ", "binary", " ", "digits"}], 
+       ",", 
+       RowBox[{
+       "padded", " ", "on", " ", "the", " ", "left", " ", "with", " ", 
+        "zeros", " ", "to", " ", "make", " ", "it", " ", "have", " ", "ns", 
+        " ", "digits"}]}], "*)"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Calculate", " ", "final", " ", "state", " ", "for", " ", "Transversal",
+        " ", "Injection"}], "*)"}], 
+     RowBox[{"finalstate", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "4"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "4", "]"}]}]}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "3"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "3", "]"}]}]}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "2"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "2", "]"}]}]}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "1"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "1", "]"}]}]}], ")"}], ".", "initialstate"}], 
+       "/", "8"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "Define", " ", "Logical", " ", "by", " ", "defining", " ", "a", " ", 
+        "random", " ", "state", " ", "and", " ", "then", " ", "measuring", 
+        " ", "ALL", " ", "stabilizers", " ", "and", " ", "logical", " ", 
+        "operators"}], ",", 
+       RowBox[{
+       "makes", " ", "sure", " ", "gauge", " ", "matches", " ", "the", " ", 
+        "transversal", " ", "injected", " ", "state"}]}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"initialrando", "=", 
+      RowBox[{"KroneckerProduct", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"MatrixExp", "[", 
+          RowBox[{"I", "*", "XS", "*", "0.2"}], "]"}], ".", "zero"}], ",", 
+        RowBox[{
+         RowBox[{"MatrixExp", "[", 
+          RowBox[{"I", "*", "XS", "*", "0.4"}], "]"}], ".", "zero"}], ",", 
+        RowBox[{
+         RowBox[{"MatrixExp", "[", 
+          RowBox[{"I", "*", "XS", "*", "0.33"}], "]"}], ".", "zero"}], ",", 
+        RowBox[{
+         RowBox[{"MatrixExp", "[", 
+          RowBox[{"I", "*", "XS", "*", "0.766"}], "]"}], ".", "zero"}], ",", 
+        RowBox[{
+         RowBox[{"MatrixExp", "[", 
+          RowBox[{"I", "*", "XS", "*", "0.111"}], "]"}], ".", "zero"}]}], 
+       "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Calculate", " ", "relavant", " ", "logical", " ", "Zero", " ", 
+       "state"}], "*)"}], 
+     RowBox[{"finalzerotemp", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"ident", "+", "zerolog"}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "4"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "4", "]"}]}]}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "3"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "3", "]"}]}]}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "2"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "2", "]"}]}]}], ")"}], ".", 
+        RowBox[{"(", 
+         RowBox[{"ident", "+", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", 
+            RowBox[{"Extract", "[", 
+             RowBox[{"Trajectory", ",", "1"}], "]"}]}], "*", 
+           RowBox[{"stab", "[", "1", "]"}]}]}], ")"}], ".", "initialrando"}], 
+       "/", "16"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "There", " ", "is", " ", "a", " ", "global", " ", "phase", " ", "to", 
+       " ", "be", " ", "modded", " ", "out", " ", "of", " ", "the", " ", 
+       "state"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", "Temp", "}"}], "=", 
+      RowBox[{"Chop", "[", 
+       RowBox[{"Conjugate", "[", 
+        RowBox[{"Transpose", "[", "finalzerotemp", "]"}], "]"}], "]"}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"divideby", "=", 
+      RowBox[{"FirstCase", "[", 
+       RowBox[{"Temp", ",", "_Complex"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"finalzero", "=", 
+      RowBox[{"Chop", "[", 
+       RowBox[{"finalzerotemp", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", 
+          RowBox[{"Conjugate", "[", "divideby", "]"}]}], ")"}]}], "]"}]}], 
+     ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Define", " ", "logical", " ", "one", " ", "by", " ", "performing", " ",
+        "logical", " ", "bit", " ", "flip", " ", "on", " ", "a", " ", 
+       "zero"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"finalone", "=", 
+      RowBox[{
+       RowBox[{"KroneckerProduct", "[", 
+        RowBox[{"XS", ",", "IS", ",", "IS", ",", "XS", ",", "IS"}], "]"}], 
+       ".", "finalzero"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Find", " ", "overlaps", " ", "between", " ", "states", " ", "and", " ",
+        "logical", " ", "zeros", " ", "and", " ", "one"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"alphalogical", "=", 
+      RowBox[{
+       RowBox[{"Conjugate", "[", 
+        RowBox[{"Transpose", "[", "finalzero", "]"}], "]"}], ".", 
+       "finalstate"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"betalogical", "=", 
+      RowBox[{
+       RowBox[{"Conjugate", "[", 
+        RowBox[{"Transpose", "[", "finalone", "]"}], "]"}], ".", 
+       "finalstate"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Put", " ", "in", " ", "nicer", " ", "form", " ", "to", " ", "print"}], 
+      "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"aLunrounded", "=", 
+      RowBox[{"Part", "[", 
+       RowBox[{
+        RowBox[{"Expand", "[", 
+         RowBox[{"FullSimplify", "[", "alphalogical", "]"}], "]"}], ",", 
+        "1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"bLunrounded", "=", 
+      RowBox[{"Part", "[", 
+       RowBox[{
+        RowBox[{"Expand", "[", 
+         RowBox[{"FullSimplify", "[", "betalogical", "]"}], "]"}], ",", "1"}],
+        "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"aL", "=", 
+      RowBox[{"ReplaceAll", "[", 
+       RowBox[{"aLunrounded", ",", 
+        RowBox[{"n_Real", "->", 
+         RowBox[{"Round", "[", 
+          RowBox[{"n", ",", ".000000000001"}], "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"bL", "=", 
+      RowBox[{"ReplaceAll", "[", 
+       RowBox[{"bLunrounded", ",", 
+        RowBox[{"n_Real", "->", 
+         RowBox[{"Round", "[", 
+          RowBox[{"n", ",", ".000000000001"}], "]"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Append", " ", "to", " ", "text", " ", "file"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"stream", "=", 
+      RowBox[{"OpenAppend", "[", 
+       RowBox[{"\"\<aL_D2_unrotated.txt\>\"", ",", 
+        RowBox[{"PageWidth", "->", "Infinity"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PutAppend", "[", 
+      RowBox[{"aL", ",", "stream"}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "stream", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"stream", "=", 
+      RowBox[{"OpenAppend", "[", 
+       RowBox[{"\"\<bL_D2_unrotated.txt\>\"", ",", 
+        RowBox[{"PageWidth", "->", "Infinity"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PutAppend", "[", 
+      RowBox[{"bL", ",", "stream"}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "stream", "]"}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"output", "=", 
+      RowBox[{"TableForm", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"IntegerString", "[", 
+            RowBox[{"i", ",", "2", ",", "ns"}], "]"}], "}"}], 
+          RowBox[{"(*", 
+           RowBox[{"the", " ", "trajectory"}], "*)"}], ",", 
+          RowBox[{"{", "aL", "}"}], ",", 
+          RowBox[{"{", "bL", "}"}]}], "}"}], ",", 
+        RowBox[{"TableAlignments", "->", "Left"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "output", "]"}], ";"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.921725729300968*^9, 3.921725729300968*^9}, 
+   3.922414205128739*^9, 3.9224147700455728`*^9, {3.922417325580681*^9, 
+   3.922417419150818*^9}, {3.9224175263561583`*^9, 3.9224175269096956`*^9}, {
+   3.922417556980094*^9, 3.9224175614589753`*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"0cb52b57-3408-46ea-95c9-6678db65f7ce"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0000\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "5"]}], "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0000"}, {{
+     1. $CellContext`a^5 + 2. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 2. $CellContext`a^3 $CellContext`b^2 + 
+      2. $CellContext`a^2 $CellContext`b^3}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175663772664`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"96412853-6a0f-493e-8f22-82e6be477d0d"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0001\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0001"}, {{
+     1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175664392633`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"bb3a54b5-1d03-479b-8f1d-84ccbe1a5457"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0010\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0010"}, {{
+     1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175664797707`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"dee71871-892d-41c8-af96-cfb7a112a284"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0011\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["b", "5"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0011"}, {{
+     1. $CellContext`a^4 $CellContext`b + 
+      2. $CellContext`a^3 $CellContext`b^2 + 1. $CellContext`b^5}}, {{
+     0. + 2. $CellContext`a^3 $CellContext`b^2 + 
+      2. $CellContext`a^2 $CellContext`b^3}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175665287733`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"4df6b6be-f7aa-4547-9856-29aed7b34837"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0100\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "5"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {"0.`"}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0100"}, {{1. $CellContext`a^5 - 1. $CellContext`a $CellContext`b^4}}, {{
+    0.}}}, TableAlignments -> Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175665687704`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"9647834b-b336-4d20-b626-7164eb2b4bb0"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0101\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0101"}, {{
+     1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 - 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. - 1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.92241756661077*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"1797c043-16e7-4f07-890d-83b4af4e2761"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0110\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0110"}, {{
+     1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 - 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 - 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417566650771*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"65340e19-327e-435c-9242-f1f5d6213bb2"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"0111\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1.`"}], " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["b", "5"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {"0.`"}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "0111"}, {{-$CellContext`a^4 $CellContext`b + 1. $CellContext`b^5}}, {{
+    0.}}}, TableAlignments -> Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.92241756668577*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"a853c88e-6467-47dc-9942-f36135272633"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1000\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "5"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {"0.`"}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1000"}, {{1. $CellContext`a^5 - 1. $CellContext`a $CellContext`b^4}}, {{
+    0.}}}, TableAlignments -> Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417566722277*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"553e289c-68e9-4a0c-bb5a-a7e2c6e51607"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1001\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1001"}, {{
+     1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 - 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. - 1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175667712774`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"d03c6cc8-6b5c-49e8-8005-913f3acd566e"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1010\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1010"}, {{
+     1. $CellContext`a^4 $CellContext`b + 
+      1. $CellContext`a^3 $CellContext`b^2 - 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 - 
+      1. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417566817277*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"63b8957a-e525-41c1-a598-11d1f7dfa2f6"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1011\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["b", "5"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {"0.`"}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1011"}, {{1. $CellContext`a^4 $CellContext`b - 1. $CellContext`b^5}}, {{
+    0.}}}, TableAlignments -> Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417566861277*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"250e39d2-2fb8-492d-aa00-a681803714e4"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1100\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "5"]}], "-", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "+", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1100"}, {{
+     1. $CellContext`a^5 - 2. $CellContext`a^2 $CellContext`b^3 + 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 2. $CellContext`a^3 $CellContext`b^2 - 
+      2. $CellContext`a^2 $CellContext`b^3}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417566910277*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"10f5d397-308e-4805-a1d5-fae408f6b406"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1101\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1101"}, {{
+     1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.9224175669600058`*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"5e08ba23-e57e-4c07-9628-afc7da20ca41"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1110\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}], "-", 
+         RowBox[{"1.`", " ", "a", " ", 
+          SuperscriptBox["b", "4"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1110"}, {{
+     1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}, {{
+     0. + 1. $CellContext`a^4 $CellContext`b - 
+      1. $CellContext`a^3 $CellContext`b^2 + 
+      1. $CellContext`a^2 $CellContext`b^3 - 
+      1. $CellContext`a $CellContext`b^4}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417567017005*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"4001c153-58fe-4226-a1d0-b947710135f2"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"1111\"\>"},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1.`"}], " ", 
+          SuperscriptBox["a", "4"], " ", "b"}], "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"1.`", " ", 
+          SuperscriptBox["b", "5"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]},
+    {GridBox[{
+       {
+        RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "3"], " ", 
+          SuperscriptBox["b", "2"]}], "-", 
+         RowBox[{"2.`", " ", 
+          SuperscriptBox["a", "2"], " ", 
+          SuperscriptBox["b", "3"]}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}}]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{
+    "1111"}, {{-$CellContext`a^4 $CellContext`b + 
+      2. $CellContext`a^3 $CellContext`b^2 - 1. $CellContext`b^5}}, {{
+     0. + 2. $CellContext`a^3 $CellContext`b^2 - 
+      2. $CellContext`a^2 $CellContext`b^3}}}, TableAlignments -> 
+   Left]]], "Print",
+ CellChangeTimes->{3.9217257321367674`*^9, 3.922417408685175*^9, 
+  3.922417567074006*^9},
+ CellLabel->
+  "Lors de l\[CloseCurlyQuote]\[EAcute]valuation de \
+In[30]:=",ExpressionUUID->"da34cdb5-64e2-4439-8727-e341e0269d23"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1428., 735.75},
+WindowMargins->{{-6, Automatic}, {Automatic, -6}},
+TaggingRules-><|"TryRealOnly" -> False|>,
+FrontEndVersion->"13.1 pour Microsoft Windows (64-bit) (August 22, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"747c0aa5-5047-422e-ace3-4eaa59cf88e6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 14774, 397, 1494, "Input",ExpressionUUID->"0cb52b57-3408-46ea-95c9-6678db65f7ce"],
+Cell[CellGroupData[{
+Cell[15221, 416, 2132, 60, 58, "Print",ExpressionUUID->"96412853-6a0f-493e-8f22-82e6be477d0d"],
+Cell[17356, 478, 2582, 71, 58, "Print",ExpressionUUID->"bb3a54b5-1d03-479b-8f1d-84ccbe1a5457"],
+Cell[19941, 551, 2582, 71, 58, "Print",ExpressionUUID->"dee71871-892d-41c8-af96-cfb7a112a284"],
+Cell[22526, 624, 2132, 60, 58, "Print",ExpressionUUID->"4df6b6be-f7aa-4547-9856-29aed7b34837"],
+Cell[24661, 686, 1603, 46, 56, "Print",ExpressionUUID->"9647834b-b336-4d20-b626-7164eb2b4bb0"],
+Cell[26267, 734, 2579, 71, 58, "Print",ExpressionUUID->"1797c043-16e7-4f07-890d-83b4af4e2761"],
+Cell[28849, 807, 2580, 71, 58, "Print",ExpressionUUID->"65340e19-327e-435c-9242-f1f5d6213bb2"],
+Cell[31432, 880, 1624, 47, 56, "Print",ExpressionUUID->"a853c88e-6467-47dc-9942-f36135272633"],
+Cell[33059, 929, 1601, 46, 56, "Print",ExpressionUUID->"553e289c-68e9-4a0c-bb5a-a7e2c6e51607"],
+Cell[34663, 977, 2582, 71, 58, "Print",ExpressionUUID->"d03c6cc8-6b5c-49e8-8005-913f3acd566e"],
+Cell[37248, 1050, 2580, 71, 58, "Print",ExpressionUUID->"63b8957a-e525-41c1-a598-11d1f7dfa2f6"],
+Cell[39831, 1123, 1601, 46, 56, "Print",ExpressionUUID->"250e39d2-2fb8-492d-aa00-a681803714e4"],
+Cell[41435, 1171, 2130, 60, 58, "Print",ExpressionUUID->"10f5d397-308e-4805-a1d5-fae408f6b406"],
+Cell[43568, 1233, 2582, 71, 58, "Print",ExpressionUUID->"5e08ba23-e57e-4c07-9628-afc7da20ca41"],
+Cell[46153, 1306, 2580, 71, 58, "Print",ExpressionUUID->"4001c153-58fe-4226-a1d0-b947710135f2"],
+Cell[48736, 1379, 2148, 60, 58, "Print",ExpressionUUID->"da34cdb5-64e2-4439-8727-e341e0269d23"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
