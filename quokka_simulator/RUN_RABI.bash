@@ -10,7 +10,7 @@ for p in "${p_values[@]}"; do
 	echo "Running p = $p rabi simulations..."
 
 	for i in $(seq 0 10); do
-   	 ./rabi_simulator_modules/d3rabi_v5.out 3 0.25 0 $p 2 100000 &
+   	 ./rabi_simulator_modules/d3rabi_v4.out 3 0.25 0 $p 2 100000 &
 	done
 
 	wait

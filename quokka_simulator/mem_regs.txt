@@ -1,3 +1,0 @@
-14 qubits!
-statevecotr allocated 
-time steps allocated 
