@@ -668,7 +668,7 @@ for i,filename in enumerate(file_list):
     plt.tight_layout()
 
 
-    # plt.savefig("results_of_plot_rabi/rabi curves/d{}/θ={}π, φ={}π, p={} analytical.png".format(distance,format(round(θ/np.pi,4), '.4f'),format(round(φ/np.pi,4), '.4f'),p_error,n_selected,samples))
+    plt.savefig("results_of_plot_rabi/rabi curves/d{}/θ={}π, φ={}π, p={} analytical.png".format(distance,format(round(θ/np.pi,4), '.4f'),format(round(φ/np.pi,4), '.4f'),p_error,n_selected,samples))
     plt.clf()
     plt.close()
 

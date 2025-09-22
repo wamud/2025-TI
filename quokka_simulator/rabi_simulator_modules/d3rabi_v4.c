@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
     sscanf(argv[6],"%i",&reps); 
 
     if (distance != 3) {
-        // printf("This code is currently only for distance 3 \n");
+        //// printf("This code is currently only for distance 3 \n");
         return 1;
     }
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
     bool TI = true; // are we doing transversal injection? 
     bool faulty_reset_and_measurement = true; // set to true if you want to simulate faulty reset and measurement. 
 
-    printf("phi %f , theta %f , p %f, d %i, sweeps %i,  \n", physphi,phystheta,p_error,distance,numsweeps);
+    //printf("phi %f , theta %f , p %f, d %i, sweeps %i,  \n", physphi,phystheta,p_error,distance,numsweeps);
 
 // Simulation of unrot. d=3: auxindex data qubits (numbered 0 to 12) and  1 auxiliary (numbered auxindex)
 // (Normally 12 auxiliarys but I'm just using one and resetting it)
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]){
 
 
         fprintf(output,"Rep. %i: \n",ii);
-        // printf("Rep. %i: \n",ii);
+        //// printf("Rep. %i: \n",ii);
 
         // Getting 'random' seed for initialising simulator:
         struct timespec ts;
@@ -96,10 +96,12 @@ int main(int argc, char *argv[]){
 
 
         // simulate faulty reset:
-        if (faulty_reset_and_measurement == true){
-            for(int j = 0; j < (qubits); j++){
-                ds_xerr(reg, j); // probabilistically apply an x error to each qubit
-                }
+        if (p_error != 0){
+            if (faulty_reset_and_measurement == true){
+                for(int j = 0; j < (qubits); j++){
+                    ds_xerr(reg, j); // probabilistically apply an x error to each qubit
+                    }
+            }
         }
 
         // Do transversal injection - i.e. rotate all the dataqubits
@@ -121,7 +123,7 @@ int main(int argc, char *argv[]){
         }
 
             // ds_print(reg);
-            printf("Above shows: \n state in binary : its coefficient : the number zero \n");
+            //printf("Above shows: \n state in binary : its coefficient : the number zero \n");
 
 
 
@@ -426,9 +428,9 @@ int main(int argc, char *argv[]){
                     int index = x + xi;
                     if (index < num_stabs) { // Ensure within bounds
                         fprintf(output, "%i", syndrome[sweep][index]);
-                        // printf("%i", syndrome[sweep][index]);
+                        //// printf("%i", syndrome[sweep][index]);
                         
-                        printf("(i=%i)", index); // check it's actually printing correctly
+                        //printf("(i=%i)", index); // check it's actually printing correctly
                     }
                 }
             }
@@ -439,15 +441,15 @@ int main(int argc, char *argv[]){
                     int index = z + zi;
                     if (index < num_stabs) { // Ensure within bounds
                         fprintf(output, "%i", syndrome[sweep][index]);
-                        // printf("%i", syndrome[sweep][index]);
-                        printf("(i=%i)", index); // check it's actually printing correctly 
+                        //// printf("%i", syndrome[sweep][index]);
+                        //printf("(i=%i)", index); // check it's actually printing correctly 
                     }
                 }
             }
 
             // New line at the end of each sweep
             fprintf(output, "\n");
-            // printf("\n");
+            //// printf("\n");
         }
 
 
@@ -456,7 +458,7 @@ int main(int argc, char *argv[]){
 
         int j;
 
-        // printf( "Data qubit measurements:\n");
+        //// printf( "Data qubit measurements:\n");
         fprintf(output,"Data qubit measurements:\n");
         
         // Let's measure just the top row of data qubits to measure ZL. (Skip auxiliary qubits)
@@ -474,12 +476,12 @@ int main(int argc, char *argv[]){
             // // When re-using one auxiliary and measuring all data qubits, don't need to skip any:
             bit[0] = j; // list of qubits to measure
             int measurement = ds_measure(reg,1,bit); // recall: ds_measure(reg,nq2m,*lq2m)
-            // printf( "%d",measurement);
+            //// printf( "%d",measurement);
             fprintf(output, "%d",measurement);
 
         }
 
-        // printf("\n\n");
+        //// printf("\n\n");
         fprintf(output,"\n\n");
 
         ds_destroy_register(reg);
@@ -489,7 +491,7 @@ int main(int argc, char *argv[]){
         
         
 
-    // printf("\n pid: %i\n\n",getpid());
+    //// printf("\n pid: %i\n\n",getpid());
 
     fclose(output);
     

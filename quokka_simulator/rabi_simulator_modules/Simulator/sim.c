@@ -924,11 +924,12 @@ void ds_depolarising(ds_Register reg, int q)
 
 
 void ds_xerr(ds_Register reg, int q) {
-    double randomValue = ds_uniform(); // Generate a random value between 0 and 1
-    if (randomValue <= reg.err) { // Using 'err' in reg as p_error
-        // Apply an X error to qubit q
-        ds_X(reg, q, 0); 
-    }
+   if (reg.err == 0) return;
+   double randomValue = ds_uniform(); // Generate a random value between 0 and 1
+   if (randomValue <= reg.err) { // Using 'err' in reg as p_error
+      // Apply an X error to qubit q
+      ds_X(reg, q, 0); 
+   }
 }
 
 int ds_get_qubit_step(ds_Register reg, int qubit_index) {
@@ -965,4 +966,4 @@ void ds_print_all_qubit_steps(ds_Register reg) {
 }
 
 
-// ]
+// ] End of Ant's additions
