@@ -23,6 +23,9 @@ from scipy.optimize import curve_fit
 
 dist = sys.argv[1]
 
+file_list = glob.glob(f"results_of_run_rabi/processed/d{dist}/p=0.0000*.dat") # will plot graphs for all files in this directory (I have added a way to combine files)
+
+
 
 # New: try group by theta bins:
 try_group_by_bins = False
@@ -413,7 +416,6 @@ def extract_parameters_from_filename_v2(filename):
 
 
 # # # PLOTTER CODE:
-file_list = glob.glob(f"results_of_run_rabi/processed/d{dist}/*.dat") # will plot graphs for all files in this directory (I have added a way to combine files)
 
 # file_list = glob.glob(f"results_of_run_rabi/processed/d{dist}/p=0.0000_d3_reuse_unrot_theta0.700π_phi0.000π_sweeps3_reps_500000_id550539030118980394.dat")
 
